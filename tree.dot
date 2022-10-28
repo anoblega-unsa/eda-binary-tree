@@ -1,0 +1,14 @@
+digraph g {
+node [shape=record, height=0.1];
+node_8 [label = "<l> | <m> 8 | <r>"];
+node_8:l -> node_1:m;
+node_8:r -> node_20:m;
+node_1 [label = "<l> | <m> 1 | <r>"];
+node_1:r -> node_5:m;
+node_5 [label = "<l> | <m> 5 | <r>"];
+node_5:l -> node_3:m;
+node_5:r -> node_7:m;
+node_3 [label = "<l> | <m> 3 | <r>"];
+node_7 [label = "<l> | <m> 7 | <r>"];
+node_20 [label = "<l> | <m> 20 | <r>"];
+}
