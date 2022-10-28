@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -73,7 +74,6 @@ struct BTS
         }
     }
 
-
     Node<T>* insert(Node<T>* current, T data){
         if(current==nullptr) return new Node<T>(data);
         else{
@@ -103,25 +103,72 @@ struct BTS
     }
 
 
-    void inOrder(){
-        // sin recursion
-    }
 
     void preOrder(){
         //sin recursion
     }
 
-    void PostOrder(){
-        //sin recursion
-    }
-    
     void LevelTraverse(){
-        //implementar
+
+    }
+
+    Node<T>* maxNode(Node<T>* current){
+        if(current==nullptr || current->m_right==nullptr) return current;
+        return maxNode(current->m_right);
+    }
+
+    Node<T>* deleteNode(Node<T>* current, T key){
+        if(current==nullptr) return current;
+
+        if(key < current->m_data){
+            current->m_left = deleteNode(current->m_left, key);
+        }else if(key > current->m_data){
+            current->m_right = deleteNode(current->m_right, key);
+        } else {
+            if (current->m_left == nullptr){
+                Node<T>* temp = current->m_right;
+                free(current);
+                return temp;
+            }else if(current->m_right == nullptr){
+                Node<T>* temp = current->m_left;
+                free(current);
+                return temp;
+            }
+
+            Node<T>* temp = maxNode(current->m_left);
+
+            current->m_data = temp->m_data;
+            current->m_left = deleteNode(current->m_left, temp->m_data);
+        }
+
+        return current;
     }
 
     void deleteNode(T key){
+        deleteNode(m_root, key);
+    }
+ 
+    void damInsert2(T data, vector<bool> directions){
 
     }
+
+    bool isBTS(){
+        //implementar
+        return true;
+    }
+
+    Node<T>* kSmallest(int k){
+        return nullptr;
+    }
+};
+
+struct Student
+{
+    string m_cui;
+    string nombre;
+    int edad;
+    /* data */
+    Student(string cui, string nombre, int edad).....
 };
 
 
@@ -129,14 +176,24 @@ int main() {
 
     BTS<int> t1 = BTS<int>();
 
+    t1.insert(20);
     t1.insert(8);
     t1.insert(1);
     t1.insert(5);
     t1.insert(3);
-    t1.insert(7);
-    t1.insert(20);
+    //t1.insert(7);
+    t1.insert(15);
+    t1.insert(50);
+    t1.insert(35);
+    t1.insert(60);
+
+ 
+
+    t1.deleteNode(8);
     
     t1.dot("tree.dot");
+
+    
 
     return 0;
 }
