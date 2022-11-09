@@ -1,10 +1,10 @@
 all: a.out
 
 run-dot:
-	g++ main.cpp && ./a.out && dot -Tpng tree.dot > tree.png
+	g++ avl.cpp && ./a.out && dot -Tpng tree.dot > tree.png
 
 a.out:
-	g++ main.cpp -o a.out
+	g++ avl.cpp -o a.out
 
 test: a.out
 	./a.out < inputs.txt

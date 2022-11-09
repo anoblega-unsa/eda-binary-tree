@@ -1,18 +1,14 @@
 digraph g {
 node [shape=record, height=0.1];
-node_20 [label = "<l> | <m> 20 | <r>"];
-node_20:l -> node_5:m;
-node_20:r -> node_50:m;
-node_5 [label = "<l> | <m> 5 | <r>"];
-node_5:l -> node_1:m;
-node_5:r -> node_15:m;
+node_45 [label = "<l> | <m> 45 | <r>"];
+node_45:l -> node_8:m;
+node_45:r -> node_50:m;
+node_8 [label = "<l> | <m> 8 | <r>"];
+node_8:l -> node_1:m;
+node_8:r -> node_20:m;
 node_1 [label = "<l> | <m> 1 | <r>"];
-node_1:r -> node_3:m;
-node_3 [label = "<l> | <m> 3 | <r>"];
-node_15 [label = "<l> | <m> 15 | <r>"];
+node_20 [label = "<l> | <m> 20 | <r>"];
 node_50 [label = "<l> | <m> 50 | <r>"];
-node_50:l -> node_35:m;
 node_50:r -> node_60:m;
-node_35 [label = "<l> | <m> 35 | <r>"];
 node_60 [label = "<l> | <m> 60 | <r>"];
 }
