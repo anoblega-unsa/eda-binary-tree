@@ -132,6 +132,57 @@ struct AVLTree
         m_root = insert(m_root, data);
     }
     
+    AVLNode<T>* maxNode(AVLNode<T>* current){
+        if(current==nullptr || current->m_right==nullptr) return current;
+        return maxNode(current->m_right);
+    }
+
+    AVLNode<T>* deleteNode(AVLNode<T>* current, T key){
+        if(current==nullptr) return current;
+
+        if(key < current->m_data){
+            current->m_left = deleteNode(current->m_left, key);
+        }else if(key > current->m_data){
+            current->m_right = deleteNode(current->m_right, key);
+        } else {
+            if (current->m_left == nullptr){
+                AVLNode<T>* temp = current->m_right;
+                free(current);
+                current = temp;
+            }else if(current->m_right == nullptr){
+                AVLNode<T>* temp = current->m_left;
+                free(current);
+                current = temp;
+            }else {
+                AVLNode<T>* temp = maxNode(current->m_left);
+
+                current->m_data = temp->m_data;
+                current->m_left = deleteNode(current->m_left, temp->m_data);
+            }
+        }
+
+        if(current==nullptr)
+            return current;
+
+        // balance ...
+        current->m_height = max(height(current->m_left), height(current->m_right)) + 1;
+        int factor = get_balance(current);
+        if(factor > 1){ // izquierda es mayor
+            if( get_balance(current->m_left) >= 0) return ;
+            else 
+            {
+
+            }
+        }
+        if(factor < -1){ // derecha es mayor
+            if( get_balance(current->m_right) <= 0) return ;
+            else
+            {
+
+            }
+        }
+        return current;
+    }
 
     AVLNode<T>* find(AVLNode<T>* current, T key){
         if(current==nullptr || current->m_data == key) return current;
